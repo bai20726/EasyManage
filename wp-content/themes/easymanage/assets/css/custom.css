@@ -1,69 +1,133 @@
+body{
+font-family: 'Inria Serif', serif;
+font-size: 18px;
+line-height:1.25;
+}
 
-/* Navbar styles */
-.navbar {
-    background-color: #fff;
-    border-bottom: 3px solid red;
-    padding: 1px;
-    display: flex;
+#wrapper-navbar {
+  /* margin-bottom: -100px; */
+}
 
-  }
-  .container{
-    background-color: #fff;
-    border-bottom: 3px solid green;
-    display: flex;
-    align-items: center;
+#wrapper-navbar .top-header-holder{
+  height: 290px;
+  background: #f1f1f1;
+  padding-top: 50px;
+  padding-bottom: 70px;
+  border: 6px solid red;
+}
 
-  }
-  .navbar-brand img {
-    height: 150px;
-    border-bottom: 6px solid black;
-    margin-left: 50px;
-  }
-  
-  .navbar-nav {
-    display: flex;
-    align-items: center;
-    margin-left: 80%;
-    list-style: none;
-    justify-content: horizontal;
-    border: 3px solid red;
-    justify-content: space-between;
-    gap: 100px;
-
-  }
-  
-  .nav-link {
-    font-weight: bold;
-    text-transform: uppercase;
-    margin-left: 20px;
-    text-decoration: none;
-    font-weight: 600;
-    color: orangered;
-    font-weight: bold;
-     }
-  
-  .nav-link:hover {
-    color: grey;
-  }
-
-.login button{
-  padding: 2vh 3vw;
-  background-color: orangered;
-  border:none;
-  border-radius: 50px;
-  font-weight: 500;
-  margin: 0px 10px 0px 0px;
-  color: white;
-  cursor: pointer;
-  font-weight: bold;
-  text-transform: uppercase;
+#wrapper-navbar .container .logo-holder{
+  border: 6px solid black;
+  display: block;
+}
+#wrapper-navbar .container .social-media-holder{
+  font-size: 50px;
+}
+#wrapper-navbar .container .social-media-holder a{
+  color: #F27257;
   text-decoration: none;
 }
-.login button:hover{
-  background-color: white;
-  color: orangered;
+#wrapper-navbar .container .social-media-holder a:hover{
+  color: #0312227c;
 }
- 
+
+#wrapper-navbar .container .contact-holder{
+  font-size:18px;
+}
+#wrapper-navbar .container .contact-holder a{
+  color: #223a47;
+  display: inline-block;
+  margin-right:1em;
+  margin-bottom: 1em;
+}
+#wrapper-navbar .container .contact-holder .fa{
+  color:#f27257;
+}
+
+#wrapper-navbar .container .login-btn{
+  font-family: 'Fredericka the Great', cursive;
+  font-size: 38px;
+  border: 1px dotted #223a47;
+  display: inline-block;
+  padding: 0.25em 0.5em;
+  border-radius:0.25em;
+  transition: 0.25s ease all;
+  cursor: pointer;
+  text-decoration: none;
+  color: black;
+  align-items: center;
+}
+#wrapper-navbar .container .login-btn:hover{
+  background: #ff360e;
+  color: #fff;
+}
+.login-holder{
+  display: flex;
+  flex-flow: column;
+}
+#wrapper-navbar #main-nav{
+  border-top: 1px solid rgba(#5DA0AA, 1);
+  border-bottom: 1px solid rgba(#5DA0AA, 1);
+  padding:0px;
+
+}
+
+#wrapper-navbar #main-nav ul{
+  flex: 1;
+  justify-content: space-between;
+  
+
+}
+#wrapper-navbar #main-nav ul li{
+  list-style: none;
+  justify-content: space-between;
+  text-align: center;
+  gap: 20px;
+}
+
+
+#wrapper-navbar #main-nav ul li a{
+  font-weight:600;
+  font-size: 22px;
+  text-transform: uppercase;
+  color:#F27257;
+  text-decoration: none;
+  padding: 1.5em 0.5rem;
+
+}
+
+
+.home-banner {
+  height: 900px;
+  background: #ccc;
+  background-image: url('/wp-content/themes/easymanage/images/background.jpg');
+  background-size: cover;
+  background-position: top center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-bottom: 115px;
+}
+
+ .home-banner:after {
+  content: "";
+  display: block;
+
+  height: 230px;
+  position: absolute;
+ }
+
+
+
+.home-banner h1{
+  font-size: 60px;
+  font-family: 'Fredericka the Great', cursive;
+  position: relative;
+  z-index: 1000;
+}
+
+
+
 .body-image{
   margin-top: -10px;
   height:100%;
@@ -83,6 +147,40 @@
   margin-top: -6%;
 
 }
+
+.home-welcome{
+  margin-top:120px;  
+
+}
+.home-welcome .title-holder{
+  padding-bottom:60px;
+  border-bottom: 1px solid grey;
+  margin-bottom: 60px;
+}
+
+.home-welcome h2{
+  font-family: 'Fredericka the Great', cursive;
+  font-size: 72px;
+  line-height: 1;
+  transform: translate( 100px, 20px);
+}
+.home-welcome h2 span {
+  font-family: 'Pacifico', cursive;
+  font-size:130px;
+  display: block;
+  color: rgb(252, 116, 67);
+  transform: translate( 100px, 20px);
+}
+.home-welcome p{
+
+}
+.home-welcome .tagline{
+  font-size: 24px;
+  color: teal;
+  font-weight: 600;
+}
+
+
 .welcome-section h2{
   font-family: 'Island Moments', cursive;
   font-size: 100px;
@@ -127,76 +225,96 @@
   margin-top: 15%;
 
 }
-.welcome-section-paragraph .btn:hover{
-  background-color: #ff9b06; 
-  color: white;
+  
+/* login page */
+
+
+.login-wrapper {
+    max-width: 350px;
+    min-height: 500px;
+    margin: 80px auto;
+    padding: 40px 30px 30px 30px;
+    background-color: #ecf0f3;
+    border-radius: 15px;
+    box-shadow: 13px 13px 20px #cbced1, -13px -13px 20px #fff;
 }
-  /* newletter*/
-  .newsletter {
-    background-image: url('path/to/header-bg.jpg');
-    background-size: cover;
-    padding: 100px 0;
-  }
-  
- 
-  
-  
-  
-  .header a.btn {
-    color: #fff;
-    background-color: #007bff;
+
+.login-logo {
+    width: 80px;
+    margin: auto;
+}
+
+.login-logo img {
+    width: 100%;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow: 0px 0px 3px #5f5f5f,
+        0px 0px 0px 5px #ecf0f3,
+        8px 8px 15px #a7aaa7,
+        -8px -8px 15px #fff;
+}
+
+.login-wrapper .name {
+    font-weight: 600;
+    font-size: 1.4rem;
+    letter-spacing: 1.3px;
+    padding-left: 10px;
+    color: #555;
+}
+
+.login-wrapper .form-field input {
+    width: 100%;
+    display: block;
     border: none;
-    border-radius: 25px;
-    padding: 10px 20px;
-    font-weight: bold;
-    text-transform: uppercase;
-    margin-top: 20px;
-  }
-  
-  .header a.btn:hover {
-    background-color: #0056b3;
-  }
-  
-  /* Newsletter styles */
-  .newsletter {
-    background-image: url('path/to/newsletter-bg.jpg');
-    background-size: cover;
-    padding: 100px 0;
-    text-align: center;
-  }
-  
-  .newsletter h2 {
-    color: #fff;
-    font-size: 2.5em;
+    outline: none;
+    background: none;
+    font-size: 1.2rem;
+    color: #666;
+    padding: 10px 15px 10px 10px;
+    /* border: 1px solid red; */
+}
+
+.login-wrapper .form-field {
+    padding-left: 10px;
     margin-bottom: 20px;
-  }
-  
-  .newsletter p {
+    border-radius: 20px;
+    box-shadow: inset 8px 8px 8px #cbced1, inset -8px -8px 8px #fff;
+}
+
+.login-wrapper .form-field .fas {
+    color: #555;
+}
+
+.login-wrapper .btn {
+    box-shadow: none;
+    width: 100%;
+    height: 40px;
+    background-color: #03A9F4;
     color: #fff;
-    font-size: 1.5em;
-  }
-  
-  .newsletter input[type="text"],
-  .newsletter input[type="email"] {
-    border: none;
     border-radius: 25px;
-    padding: 10px 20px;
-    margin: 10px;
-    font-size: 1em;
-    width: 200px;
-  }
-  
-  .newsletter button {
-    color: #fff;
-    background-color: #007bff;
-    border: none;
-    border-radius: 25px;
-    padding: 10px 20px;
-    font-weight: bold;
-    text-transform: uppercase;
-  }
-  
-  .newsletter button:hover {
-    background-color: #0056b3;
-  }
-  
+    box-shadow: 3px 3px 3px #b1b1b1,
+        -3px -3px 3px #fff;
+    letter-spacing: 1.3px;
+}
+
+.login-wrapper .btn:hover {
+    background-color: #039BE5;
+}
+
+.login-wrapper a {
+    text-decoration: none;
+    font-size: 0.8rem;
+    color: #03A9F4;
+}
+
+.login-wrapper a:hover {
+    color: #039BE5;
+}
+
+@media(max-width: 380px) {
+    .login-wrapper {
+        margin: 30px 20px;
+        padding: 40px 15px 15px 15px;
+    }
+}

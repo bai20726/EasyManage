@@ -4,59 +4,57 @@
  */
 get_header();
 ?>
-<!-- Navbar section -->
-<nav class="navbar">
-  <div class="container">
-    <a class="navbar-brand" href="#"><img src="/wp-content/themes/easymanage/images/logo.png" alt="Logo"></a>
-      <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" href="#">About Us</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Contact Us</a>
-      </li>
-    <li class="login">
-      <button href="login.php">LOGIN</button>
-    </li>
-    </ul>
-  </div>
-</nav>
 
 
-  <div class="row">
-    <div class="body-image">
-      <img src="/wp-content/themes/easymanage/images/background.jpg" alt="background">
+
+<div class="home-banner">
+  <di class="container"><h1>Efficient Project Management Solution</h1>
     </div>
   </div>
-  <div class="row">
-    <div class="paragraph">
-      <h2>Efficient Project Management Solution</h2>
-    </div>
+  
+  <div class="home-welcome">
+    <div class="title-holder">
+          <div class="container">
+           <h2><span>Welcome to </span>Easy Manage</h2>
+          </div>
+    </div>      
+      <div class="container">
+           <div class="row">
+             <div class="col-lg-1">
+               <div class="col-lg-8">
+               <p class="tagline"> Easy Manage is a management application that helps
+           project managers keep track of all their members and 
+           assign projects to their members
+           </p>
+            <p> Assigning tasks and tracking progress is made simple with our system.
+           The project manager can easily create tasks and assign them 
+           to the appropriate team members. The system provides a centralized
+            platform for team members to track progress and communicate with 
+            each other
+           </p>
+               </div>
+               <div class="col-lg-3">
+                  <div class=" btn btn-primary">Read More</div>
+               </div>
+             </div>
+           </div>
+      </div>
   </div>
-  <div class="row">
-    <div class="col-md-12">
-      <section class="welcome-section">
-        <h2>Welcome to </h2>
-        <h3>EASY MANAGE </h3>
-        </section>
+
         <section class="welcome-div">
         <div class="welcome-section-paragraph">
-        <p> Easy Manage is a management application that helps
-          <br> project managers keep track of all their members and <br>
-          assign projects to their members
-        </p>
+        
        </div>
         <div class="welcome-button">
         <a href="#" class="btn btn-primary">Read More</a>
         </div>
       </section>
-      
-    </div>
-  </div>
+   
 
   <div class="row">
     <div class="newsletter">
       <section class="newsletter-section">
+        <h1>Sign up</h1>
         <h2>Subscribe to our email newsletter</h2>
         <form>
           <div class="form-group">
