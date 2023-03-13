@@ -22,7 +22,7 @@ get_header();
                                 <i class="fa fa-map"></i>Kware street, Nyeri, Kenya</a>
                         </div>
                         <div class="d-flex justify-content-center">
-                            <a href="#" class="login-btn">LOGIN</a>
+                            <a href="/user-login/" class="login-btn">LOGIN</a>
                         </div>
                     </div>
                 </div>
@@ -53,37 +53,31 @@ get_header();
             <h2><span>Welcome to </span>Easy Manage</h2>
         </div>
     </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-1">
-                <div class="col-lg-8">
-                    <p class="tagline"> Easy Manage is a management application that helps
-                        project managers keep track of all their members and
-                        assign projects to their members
-                    </p>
-                    <p> Assigning tasks and tracking progress is made simple with our system.
-                        The project manager can easily create tasks and assign them
-                        to the appropriate team members. The system provides a centralized
-                        platform for team members to track progress and communicate with
-                        each other
-                    </p>
-                </div>
-                <div class="col-lg-3">
-                    <div class=" btn btn-primary">Read More</div>
+    <div class="home-welcome-paragraph">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10">
+                    <div class="col-lg-8">
+                        <p class="tagline"> Easy Manage is a management application that helps
+                            project managers keep track of all their members and
+                            assign projects to their members
+                        </p>
+                        <p> Assigning tasks and tracking progress is made simple with our system.
+                            The project manager can easily create tasks and assign them
+                            to the appropriate team members. The system provides a centralized
+                            platform for team members to track progress and communicate with
+                            each other
+                        </p>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="button">Read More</div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<section class="welcome-div">
-    <div class="welcome-section-paragraph">
-
-    </div>
-    <div class="welcome-button">
-        <a href="#" class="btn btn-primary">Read More</a>
-    </div>
-</section>
 
 
 <div class="row">

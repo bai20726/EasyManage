@@ -7,7 +7,7 @@
 defined( 'ABSPATH' ) || exit;
 
 function wp_custom_styles(){
-  wp_register_style('custom', get_template_directory_uri().'/assets/css/custom.css',array(),'1.0.0', 'all');
+  // wp_register_style('custom', '/wp-content/themes/easymanage/assets/css/custom.css',array(),'1.0.0', 'all');
   wp_enqueue_style('custom');
   wp_enqueue_style( 'bootstrap', 'https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css' );
 

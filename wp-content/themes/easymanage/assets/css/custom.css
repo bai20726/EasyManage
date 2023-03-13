@@ -13,11 +13,11 @@ line-height:1.25;
   background: #f1f1f1;
   padding-top: 50px;
   padding-bottom: 70px;
-  border: 6px solid red;
+  /* border: 6px solid red; */
 }
 
 #wrapper-navbar .container .logo-holder{
-  border: 6px solid black;
+  /* border: 6px solid black; */
   display: block;
 }
 #wrapper-navbar .container .social-media-holder{
@@ -98,7 +98,7 @@ line-height:1.25;
 
 
 .home-banner {
-  height: 900px;
+  height: 800px;
   background: #ccc;
   background-image: url('/wp-content/themes/easymanage/images/background.jpg');
   background-size: cover;
@@ -112,46 +112,38 @@ line-height:1.25;
  .home-banner:after {
   content: "";
   display: block;
-
   height: 230px;
   position: absolute;
  }
 
 
-
 .home-banner h1{
   font-size: 60px;
   font-family: 'Fredericka the Great', cursive;
-  position: relative;
-  z-index: 1000;
-}
-
-
-
-.body-image{
-  margin-top: -10px;
-  height:100%;
-  width: 100%;
-  border-bottom: 3px solid green;
-}
-.body-image img {
-  height: 100%;
-  border-bottom: 6px solid black;
-  width: 100%;
-}
-.paragraph{
+  border: 2px solid red;
+  margin-top: 70px;
   text-align: center;
-  color: black;
-  text-transform: uppercase;
-  font-size:30px;
-  margin-top: -6%;
-
 }
+
+
+
 
 .home-welcome{
   margin-top:120px;  
 
 }
+.home-welcome-paragraph{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.home-welcome-paragraph .column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .home-welcome .title-holder{
   padding-bottom:60px;
   border-bottom: 1px solid grey;
@@ -171,72 +163,65 @@ line-height:1.25;
   color: rgb(252, 116, 67);
   transform: translate( 100px, 20px);
 }
-.home-welcome p{
 
-}
-.home-welcome .tagline{
-  font-size: 24px;
-  color: teal;
-  font-weight: 600;
-}
-
-
-.welcome-section h2{
-  font-family: 'Island Moments', cursive;
-  font-size: 100px;
-  color: orangered;
-  margin-left: 10%;
-  margin-bottom: 0%;
-}
-.welcome-section h3{
-  font-family: 'Inria Serif', serif;
-  font-weight: bold;
-  font-size: 48px;
-  margin-left: 20%;
-  margin-top: 0%;
-}
-.welcome-div{
-  display: flex;
-  flex-flow: row;
-  justify-content: space-between;
-  margin: 2% 10%;
-
-}
-.welcome-section-paragraph p{
-  color: black;
-    font-size: 2rem;
-}
-
-.welcome-button a.btn {
-  background-color: rgba(1, 1, 37, 0.2);
-  border-radius: 50px;
-  padding: 3vh 5vw;
-  border:none;
-  font-weight: bold;
-  color: black;
-  cursor: pointer;
-  font-weight: bold;
-  text-transform: uppercase;
-  text-decoration: none;
+.home-welcome .button {
+  font-size: 30px;
   text-align: center;
-   display: inline-block;
-   font-size: 1.5rem;
-  transition-duration: 0.4s;
-  margin-top: 15%;
-
+  padding: 0.5em;
+  background: #223A47;
+  color: #fff;
+  border: 2px dashed white;
+  border-radius: 0.25em;
+  transition: ease 0.25s all;
+  font-family: sans-serif;
+  cursor: pointer;
 }
-  
+.home-welcome .button:hover{
+  background: rgb(252, 116, 67);
+}
+
+@media (max-width: 1200px) {
+  .home-welcome .button {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 992px) {
+  .home-welcome .button {
+    left: 0%;
+    right: 0%;
+    bottom: 0%;
+  }
+}
+
+@media (max-width: 768px) {
+  .home-welcome .button {
+    left: 45px;
+    right: 50%;
+    bottom: -15px;
+  }
+}
+
+
+
+
+
+
+
 /* login page */
 
+body {
+  background: #ecf0f3;
+}
 
 .login-wrapper {
-    max-width: 350px;
-    min-height: 500px;
-    margin: 80px auto;
-    padding: 40px 30px 30px 30px;
-    background-color: #ecf0f3;
-    border-radius: 15px;
-    box-shadow: 13px 13px 20px #cbced1, -13px -13px 20px #fff;
+  max-width: 350px;
+  min-height: 500px;
+  margin: 80px auto;
+  padding: 40px 30px 30px 30px;
+  background-color: #ecf0f3;
+  border-radius: 15px;
+  box-shadow: 13px 13px 20px #cbced1, -13px -13px 20px #fff;
 }
 
 .login-logo {
@@ -287,29 +272,30 @@ line-height:1.25;
 }
 
 .login-wrapper .btn {
-    box-shadow: none;
-    width: 100%;
-    height: 40px;
-    background-color: #03A9F4;
-    color: #fff;
-    border-radius: 25px;
-    box-shadow: 3px 3px 3px #b1b1b1,
-        -3px -3px 3px #fff;
-    letter-spacing: 1.3px;
+  box-shadow: none;
+  width: 100%;
+  height: 40px;
+  background-color: #f27257;
+  color: #fff;
+  border-radius: 25px;
+  box-shadow: 3px 3px 3px #b1b1b1,
+      -3px -3px 3px #fff;
+  letter-spacing: 1.3px;
 }
 
 .login-wrapper .btn:hover {
-    background-color: #039BE5;
+    background-color: #223A47;
+    color: white;
 }
 
 .login-wrapper a {
     text-decoration: none;
     font-size: 0.8rem;
-    color: #03A9F4;
+    color: #f27257;
 }
 
 .login-wrapper a:hover {
-    color: #039BE5;
+    color: #f27257;
 }
 
 @media(max-width: 380px) {
@@ -317,4 +303,168 @@ line-height:1.25;
         margin: 30px 20px;
         padding: 40px 15px 15px 15px;
     }
+}
+
+/*the admin dashboard*/
+.no-padding{
+  background: #191c2e;
+  margin: 10px;
+}
+
+#main-header {
+  background: #2b2e43;
+  height: auto;
+  max-height: 80px;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+}
+
+#main-header .search {
+  height: 80px;
+  background: #3b3f53;
+  text-align: center;
+  width: 400px;
+  display: flex
+}
+
+#main-header .search input#search {
+  background: #3b3e52;
+  border: none;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 500;
+  height: 100%;
+  width: 100%;
+}
+
+#main-header .icon:before {
+  line-height: 75px;
+  margin: 0 20px 0 30px;
+  font-size: 23px;
+}
+
+#main-header .account figure {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+#main-header .account figcaption {
+  color: #fff;
+  margin: auto 10px;
+
+}
+
+#main-header .account .avatar {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  overflow: hidden;
+  box-shadow: 0 0 10px #222;
+  margin-top: 10px
+}
+.wrapper .menu-left {
+  padding: 80px 20px;
+  margin-left: -40px;
+}
+
+.wrapper .menu-left .list li {
+  align-content: center;
+  text-align: center;
+  width: 100%;
+  margin: 20px 10px;
+}
+
+.wrapper .menu-left .list li a {
+  display: flex;
+  flex-direction: column;
+  color: #ccc;
+  font-size: 13px;
+}
+
+.wrapper .menu-left .list li a.active .icon:before {
+  color: #38c3d5;
+}
+
+.wrapper .menu-left .list li a.active .text {
+  color: #fff;
+}
+
+.wrapper .menu-left .list li a .icon:before {
+  margin: 0;
+  color: #777;
+  font-size: 28px;
+}
+
+.wrapper .menu-left .list li a .text {
+  margin: 10px 0;
+}
+
+.wrapper .main-content {
+  background: #2b2e43;
+  position: relative;
+  right: -20px;
+}
+
+.wrapper .main-content .header-content {
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  background: #191c2e;
+}
+
+.wrapper .main-content .header-content .action .btn {
+  line-height: 20px;
+  border-radius: 0;
+  width: 180px;
+  font-weight: 700;
+  background: #4378eb;
+}
+
+.wrapper .main-content .header-content .action a {
+  margin: 0 20px;
+}
+.header-content ul {
+  display: flex;
+}
+
+.wrapper .main-content .header-content .list li a {
+  color: #ccc;
+  margin: 25px 10px 0 10px;
+  display: flex;
+}
+
+.wrapper .main-content .header-content .list li a .state {
+  border: 3px solid #eee;
+  display: block;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  margin: 0 10px;
+}
+.form-field1{
+  margin: 20px;
+}
+.form-field2{
+  align-content: center;
+  margin: 20px;
+}
+.form-field3{
+  margin: 20px;
+}
+.btns-section{
+  justify-content: center;
+  align-content: center;
+  display: flex;
+}
+.btn-sec2{
+  margin-left: 30px;
+}
+.btn-sec1 button{
+  margin-right: 30px;
+  width: 150px;
+}
+.btn-sec2 button{
+  margin-right: 30px;
+  width: 150px;
 }
