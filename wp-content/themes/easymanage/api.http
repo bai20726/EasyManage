@@ -1,0 +1,12 @@
+### converting project to json
+
+GET http://localhost:10044/wp-json/projects/v1/api
+
+### using post method
+POST http://localhost:10044/wp-admin/wp-json/jwt-auth/v1/token
+
+### Using post method
+POST http://localhost:10044/wp-json/projects/v1/api
+### Fetching contacts posts
+GET http://localhost:10044/wp-json/contact/v1/api
+### Fetching projects posts

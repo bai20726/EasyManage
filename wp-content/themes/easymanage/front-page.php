@@ -18,7 +18,6 @@ get_header();
             href="https://demos.creative-tim.com/soft-ui-dashboard/assets/css/soft-ui-dashboard.min.css?v=1.0.2">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
         <link rel="stylesheet" href="./assets/css/theme.css">
-        <link rel="stylesheet" href="./assets/css/loopple/loopple.css">
     </head>
 
 <body class="g-sidenav-show">

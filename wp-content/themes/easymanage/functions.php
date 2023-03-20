@@ -17,7 +17,9 @@ add_action('wp_enqueue_scripts', 'wp_custom_styles');
 
 // Enqueue the Bootstrap JavaScript file
 function my_scripts() {
-    wp_enqueue_script( 'bootstrap-js', 'https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js', array( 'jquery' ), '4.5.0', true );
+    wp_enqueue_script( 'bootstrap-js',
+     'https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js',
+     array( 'jquery' ), '4.5.0', true );
 }
 add_action( 'wp_enqueue_scripts', 'my_scripts' );
 
@@ -143,6 +145,118 @@ function template_redirect() {
 }
 add_action('template_redirect', 'template_redirect');
 
+//LIMITING LOGIN ATTEMPTS
+
+function check_attempted_login($user, $username, $password){
+  if(get_transient('attempted_login')){
+      $datas = get_transient('attempted_login');
+
+      if ($datas['tried'] >= 3){
+          $until = get_option('_transient_timeout_' . 'attempted_login');
+          $time = time_to_go($until);
+
+          return new WP_Error('too_many_tried', sprintf(__('<strong>ERROR</strong>: You have reached authentication limit, please try after %1$s'), $time));
+      }
+  }
+
+  return $user;
+}
+
+add_filter('authenticate', 'check_attempted_login', 30, 3);
+
+function login_failed($username){
+  if (get_transient('attempted_login')){
+      $datas = get_transient('attempted_login');
+      $datas['tried']++;
+
+      if ($datas['tried'] <= 3)
+          set_transient('attempted_login', $datas, 300);
+      }else{
+          $datas = array(
+              'tried' => 1
+          );
+          set_transient ('attempted_login', $datas, 300);
+      }
+        
+  
+}
+
+add_action('wp_login_failed', 'login_failed', 10, 1);
+
+function time_to_go($timestamp){
+  //converting mysql timestamp to php time
+  $periods = array(
+      "second",
+      "minute",
+      "hour",
+      "day",
+      "week",
+      "month",
+      "year"
+  );
+
+  $lengths = array(
+      "60",
+      "60",
+      "24",
+      "7",
+      "4.35",
+      "12"
+  );
+
+  $current_timestamp = time();
+  $difference = abs($current_timestamp - $timestamp);
+
+  for ($i = 0; $difference >= $lengths[$i] && $i < count($lengths)-1; $i ++ ){
+      $difference /= $lengths[$i];
+  }
+
+  //adding the countdown if the remaining is less than a minute
+  $difference = round($difference);
+
+  if(isset($difference)){
+      if($difference != 1){
+          $periods[$i] .= "s";
+          $output = "$difference $periods[$i]";
+          return $output;
+      }
+  }
+}
 
 
-?>
+
+
+//add action('rest_api_init", 'custom_rest_api')
+function register_rest_api_routes(){
+register_rest_route('projects/v1', 'api', array('callback' => 'get_Projects'));
+}
+function get_projects(){
+  $args = array(
+    'post_type' =>'project',
+    'posts_per_page' =>5,
+  'status' =>'publish'  
+);
+$new_query = new WP_Query($args);
+$projects = $new_query ->posts;
+return $projects;
+}
+add_action('rest_api_init','register_rest_api_routes');
+
+// Creating custom namespaces
+function register_rest_api_contact(){
+  register_rest_route('contact/v1', 'api', array('callback'=>'get_contact'));
+  function get_contact() {
+    $args = array(
+      'post_type' => 'contact',
+      'posts_per_page' => 5,
+      'status' => 'publish',
+    );
+    
+    $new_query = new WP_Query($args);
+    $contact = $new_query->posts;
+    
+    return $contact;
+  }
+}
+
+  

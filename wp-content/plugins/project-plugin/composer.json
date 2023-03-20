@@ -1,0 +1,18 @@
+{
+    "name": "christine/custom-plugin",
+    "description": "This is a custom plugin",
+    "type": "project",
+    "license": "GPL v2 or later",
+    "autoload": {
+        "psr-4": {
+            "Inc\\": "./inc"
+        }
+    },
+    "authors": [
+        {
+            "name": "Christine"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}

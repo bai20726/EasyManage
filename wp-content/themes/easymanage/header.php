@@ -3,8 +3,11 @@
     <head> 
         <meta charset="utf-8">
         <title>Easy Manage</title>
-        <link rel="stylesheet" href="http://localhost:10044/wp-content/themes/easymanage/assets/css/custom.css">
+        <link rel="stylesheet"
+         href="http://localhost:10044/wp-content/themes/easymanage/assets/css/custom.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
+
+
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fredericka+the+Great&family=Inria+Serif&family=Island+Moments&family=Pacifico&display=swap" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
@@ -16,3 +19,4 @@
 <body>
 
 
+<link rel="stylesheet" type="text/css" href="<?php echo get_stylesheet_directory_uri(); ?>/style.css">
