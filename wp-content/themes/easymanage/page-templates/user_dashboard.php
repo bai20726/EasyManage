@@ -13,8 +13,10 @@ get_header(); ?>
     <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://demos.creative-tim.com/soft-ui-dashboard/assets/css/nucleo-icons.css">
     <link rel="stylesheet" href="https://demos.creative-tim.com/soft-ui-dashboard/assets/css/nucleo-svg.css">
-    <link rel="stylesheet"  href="https://demos.creative-tim.com/soft-ui-dashboard/assets/css/soft-ui-dashboard.min.css?v=1.0.2">
-</head><nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <link rel="stylesheet"
+        href="https://demos.creative-tim.com/soft-ui-dashboard/assets/css/soft-ui-dashboard.min.css?v=1.0.2">
+</head>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
     <img src="/wp-content/themes/easymanage/images/logo.png" alt="logo" height="100px">
 
     <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarSupportedContent">
@@ -46,8 +48,7 @@ get_header(); ?>
             <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute top-0 d-none d-xl-none"
                 aria-hidden="true" id="iconSidenav"></i>
             <a class="navbar-brand m-0" href="javascript:;">
-                <img src="/wp-content/themes/easymanage/images/logo.png" alt="logo"height="500px"
-                    alt="...">
+                <img src="/wp-content/themes/easymanage/images/logo.png" alt="logo" height="500px" alt="...">
 
             </a>
         </div>
@@ -81,33 +82,7 @@ get_header(); ?>
                         <span class="nav-link-text ms-1">Dashboard</span>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link  " href="/wp/vanced/user-history/">
-                        <div
-                            class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <svg width="12px" height="12px" viewBox="0 0 42 42" version="1.1"
-                                xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                                <title>office</title>
-                                <g id="Basic-Elements" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                    <g id="Rounded-Icons" transform="translate(-1869.000000, -293.000000)"
-                                        fill="#FFFFFF" fill-rule="nonzero">
-                                        <g id="Icons-with-opacity" transform="translate(1716.000000, 291.000000)">
-                                            <g id="office" transform="translate(153.000000, 2.000000)">
-                                                <path class="color-background"
-                                                    d="M12.25,17.5 L8.75,17.5 L8.75,1.75 C8.75,0.78225 9.53225,0 10.5,0 L31.5,0 C32.46775,0 33.25,0.78225 33.25,1.75 L33.25,12.25 L29.75,12.25 L29.75,3.5 L12.25,3.5 L12.25,17.5 Z"
-                                                    id="Path" opacity="0.6"></path>
-                                                <path class="color-background"
-                                                    d="M40.25,14 L24.5,14 C23.53225,14 22.75,14.78225 22.75,15.75 L22.75,38.5 L19.25,38.5 L19.25,22.75 C19.25,21.78225 18.46775,21 17.5,21 L1.75,21 C0.78225,21 0,21.78225 0,22.75 L0,40.25 C0,41.21775 0.78225,42 1.75,42 L40.25,42 C41.21775,42 42,41.21775 42,40.25 L42,15.75 C42,14.78225 41.21775,14 40.25,14 Z M12.25,36.75 L7,36.75 L7,33.25 L12.25,33.25 L12.25,36.75 Z M12.25,29.75 L7,29.75 L7,26.25 L12.25,26.25 L12.25,29.75 Z M35,36.75 L29.75,36.75 L29.75,33.25 L35,33.25 L35,36.75 Z M35,29.75 L29.75,29.75 L29.75,26.25 L35,26.25 L35,29.75 Z M35,22.75 L29.75,22.75 L29.75,19.25 L35,19.25 L35,22.75 Z"
-                                                    id="Shape"></path>
-                                            </g>
-                                        </g>
-                                    </g>
-                                </g>
-                            </svg>
-                        </div>
-                        <span class="nav-link-text ms-1">Projects </span>
-                    </a>
-                </li>
+            
                 <li class="nav-item">
                     <a class="nav-link  " href="/wp/vanced/project/">
                         <div
@@ -162,7 +137,7 @@ get_header(); ?>
                                 </g>
                             </svg>
                         </div>
-                      <span class="nav-link-text ms-1">Log Out</span>
+                        <span class="nav-link-text ms-1">Log Out</span>
                     </a>
                 </li>
 
@@ -179,119 +154,138 @@ get_header(); ?>
 
             </div>
         </nav>
-        <div class="container-fluid pt-3">
-            <div class="row removable">
-                <div class="col-xl-3 col-sm-6">
-                    <div class="card mb-4">
-                        <div class="card-body p-3">
-                            <div class="row">
-                                <div class="col-8">
-                                    <div class="numbers">
-                                        <p class="text-sm mb-0 text-capitalize font-weight-bold">DRAFTS</p>
 
-                                        <h5 class="text-success mb-0 font-weight-bolder">0</h5>
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-danger">Assigned Task</h6>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
 
-                                    </div>
-                                </div>
-                                <div class="col-4 text-end">
-                                    <div
-                                        class="icon icon-shape bg-gradient-warning shadow text-center border-radius-md">
-                                        <i class="ni ni-money-coins text-lg opacity-10" aria-hidden="true"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
+
+
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Task Name</th>
+                                <th>Description</th>
+                                <th>Start Date</th>
+                                <th>Due Date</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <?php
+                        if (isset($_POST['accepted'])) {
+                            $post_id = $_POST['post-id'];
+                            $new_value = $_POST['meta-field'];
+                            update_post_meta($post_id, 'project_status_select', $new_value);
+                        }
+                        
+                        if (isset($_POST['completed'])) {
+                            $post_id = $_POST['project-id'];
+                            $new_value = $_POST['meta-field2'];
+                            update_post_meta($post_id, 'project_status_select', $new_value);
+                        }
+                        
+                        $current_user = wp_get_current_user();
+                        $user = new WP_User( $current_user ->ID);
+                        $project_status = get_post_meta(get_the_ID(), 'project_status_select', true);
+                        
+                        // The Query
+                        $query = new WP_Query(
+                            array(
+                                'post_type' => 'project',
+                                'meta_key' => 'project_user',
+                                'meta_value' => get_current_user_id()
+                            )
+                        );
+
+                        query_posts($query);
+
+                        // The Loop
+                        if ($query->have_posts()):
+                            while ($query->have_posts()):
+                                $query->the_post();
+                                // your post content ( title, excerpt, thumb....)
+                        
+                                $project_start = get_post_meta(get_the_ID(), 'project_start', true);
+                                $project_end = get_post_meta(get_the_ID(), 'project_end', true);
+                                $project_status = get_post_meta(get_the_ID(), 'project_status_select', true);
+
+                                $project_user_id = get_post_meta(get_the_ID(), 'project_user', true);
+
+                                $project_user = '';
+                                if ($project_user_id) {
+                                    $user_info = get_userdata($project_user_id);
+                                    if ($user_info) {
+                                        $project_user = $user_info->display_name;
+                                    }
+                                }
+
+                                ?>
+
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <?php the_title(); ?>
+                                        </td>
+                                        <td>
+                                            <?php the_content(); ?>
+                                            <p class="truncate"></p>
+                                        </td>
+                                        <td>
+                                            <?php echo esc_attr($project_start); ?>
+                                        </td>
+                                        <td>
+                                            <?php echo esc_attr($project_end); ?>
+                                        </td>
+                                        <td> <span <?php if ($project_status == 'Pending') {
+                                            echo 'class="badge text-bg-danger"';
+                                        } ?>         <?php if ($project_status == 'In Progress') {
+                                                      echo 'class="badge text-bg-primary"';
+                                                  } ?>         <?php if ($project_status == 'Completed') {
+                                                                echo 'class="badge text-bg-success"';
+                                                            } ?>>
+                                                <?php echo esc_attr($project_status); ?>
+                                            </span> </td>
+                                            <td>
+                                            <div class="mt-2 d-flex gap-1" >
+                                                <form action="" method="post">
+                                                    <input type="hidden" name="meta-field" value="In Progress">
+                                                    <input type="hidden" name="post-id" value="<?php echo get_the_ID(); ?>">                      
+                                                    <button class="btn btn-primary"type="submit" name="accepted" <?php if ($project_status == 'In Progress' || $project_status == 'Completed') { echo'disabled'; } ?> >Accept</button>
+                                                </form>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="mt-2 d-flex gap-1" >
+                                                <form action="" method="post">
+                                                    <input type="hidden" name="meta-field2" value="Completed">
+                                                    <input type="hidden" name="project-id" value="<?php echo get_the_ID(); ?>">
+                                                    <button class="btn btn-primary"type="submit" name="completed" <?php if ($project_status == 'Completed') { echo'disabled'; } ?>>Completed</button>
+                                                </form>
+                                            </div>          
+                                    </tr>
+                                    <?php
+                            endwhile;
+                            //Reset Query
+                            wp_reset_query();
+                        endif;
+                        ?>
+                        </tbody>
+                    </table>
                 </div>
-                <div class="col-xl-3 col-sm-6">
-                    <div class="card mb-4">
-                        <div class="card-body p-3">
-                            <div class="row">
-                                <div class="col-8">
-                                    <div class="numbers">
-                                        <p class="text-sm mb-0 text-capitalize font-weight-bold">IN-PROGRESS</p>
-                                        <h5 class="text-success mb-0 font-weight-bolder">0</h5>
-                                    </div>
-                                </div>
-                                <div class="col-4 text-end">
-                                    <div
-                                        class="icon icon-shape bg-gradient-warning shadow text-center border-radius-md">
-                                        <i class="ni ni-world text-lg opacity-10" aria-hidden="true"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-xl-3 col-sm-6">
-                    <div class="card mb-4">
-                        <div class="card-body p-3">
-                            <div class="row">
-                                <div class="col-8">
-                                    <div class="numbers">
-                                        <p class="text-sm mb-0 text-capitalize font-weight-bold">COMPLETED</p>
-                                        <h5 class="text-success mb-0 font-weight-bolder">0</h5>
-                                    </div>
-                                </div>
-                                <div class="col-4 text-end">
-                                    <div
-                                        class="icon icon-shape bg-gradient-warning shadow text-center border-radius-md">
-                                        <i class="ni ni-world text-lg opacity-10" aria-hidden="true"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
 
+                <!-- Bootstrap JS -->
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-                <div class="col-xl-3 col-sm-6">
-                    <div class="card mb-4">
-                        <div class="card-body p-3">
-                            <div class="row">
-                                <div class="col-8">
-                                    <div class="numbers">
-                                        <p class="text-sm mb-0 text-capitalize font-weight-bold">Reassigned</p>
-                                        <h5 class="text-success mb-0 font-weight-bolder">0</h5>
-                                    </div>
-                                </div>
-                                <div class="col-4 text-end">
-                                    <div
-                                        class="icon icon-shape bg-gradient-warning shadow text-center border-radius-md">
-                                        <i class="ni ni-paper-diploma text-lg opacity-10" aria-hidden="true"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
 
             </div>
         </div>
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Project Title</th>
-                    <th scope="col">Start Date</th>
-                    <th scope="col">Due date</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Sample Task</td>
-                    <td>01/03/2023</td>
-                    <td>13/03/2023</td>
-                    <td>Pending</td>
-                    <td><select name="edit" id="edit" style="border: 2px solid #090D5A; border-radius: 5px">
-                            <option value="accept">Accept</option>
-                            <option value="dismiss">Dismiss</option>
-                        </select></td>
-                </tr>
-            </tbody>
-        </table>
+       

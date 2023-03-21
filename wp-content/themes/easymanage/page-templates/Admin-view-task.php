@@ -4,9 +4,24 @@
  * Template Name: Admin-view-task
  * 
  */
-get_header(); 
+get_header();
 ?>
+<?php
 
+if (isset($_POST['update-meta'])) {
+    $post_id = $_POST['post-id'];
+    $new_value = $_POST['meta-field'];
+    update_post_meta($post_id, 'meta_key', $new_value);
+  }
+
+if (isset($_POST['delete_post'])) {
+    $post_id = $_POST['post-id'];
+    wp_delete_post($post_id);
+}
+$current_user = wp_get_current_user();
+$user = new WP_User( $current_user ->ID);
+
+?>
 
 
 <head>
@@ -40,11 +55,10 @@ get_header();
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/dashboard/">
-                
-            <img src="/wp-content/themes/easymanage/images/logo.png" alt="logo"height="100px"
-                    alt="...">
+
+                <img src="/wp-content/themes/easymanage/images/logo.png" alt="logo" height="100px" alt="...">
             </a>
-            
+
 
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
@@ -56,37 +70,37 @@ get_header();
                     <span>Dashboard</span></a>
             </li>
 
-            
-           
+
+
 
             <!-- Nav Item  -->
             <li class="nav-item">
-                <a class="nav-link " href="#">
+                <a class="nav-link " href="/admin-view-task/">
                     <i class="fas fa-fw fa-folder"></i>
                     <span>List of Tasks</span>
                 </a>
-                
+
             </li>
 
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="/admin-view-user/" >
+                <a class="nav-link collapsed" href="/admin-view-user/">
                     <i class="fas fa-fw fa-folder"></i>
                     <span>List of Users</span>
                 </a>
-               
+
             </li>
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" >
+                <a class="nav-link collapsed" href="#">
                     <i class="fas fa-fw fa-folder"></i>
                     <span>View Users</span>
                 </a>
-                
-            </li>          
 
-            
+            </li>
+
+
 
         </ul>
         <!-- End of Sidebar -->
@@ -146,15 +160,15 @@ get_header();
                             </div>
                         </li>
 
-           
-                       
-                           
+
+
+
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Christine Bai</span>
+                                <span class="mr-2 d-none d-lg-inline text-warning-600 small">Christine Bai</span>
                                 <img class="img-profile rounded-circle"
                                     src="/wp-content/themes/easymanage/images/profile.svg">
                             </a>
@@ -187,78 +201,143 @@ get_header();
                 <!-- End of Topbar -->
 
                 <div class="container-fluid">
-                <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">List of Tasks</h1>
                         <a href="/admin-add-task/" class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm"><i
                                 class="fas fa-download fa-sm text-white-50"></i> Add New Task</a>
-                                <a href="/admin-view-user/" class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm"><i
+                        <a href="/admin-view-user/" class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm"><i
                                 class="fas fa-download fa-sm text-white-50"></i> Check Members</a>
                     </div>
 
 
-                <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-danger">Users List</h6>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>Username</th>
-                                            <th>EMail</th>
-                                            <th>Catergory</th>
-                                            <th>Tasks</th>
-                                            <th>Activation</th>
-                                            
-                                        </tr>
-                                    </thead>
-                                    <tfoot>
-                                        <tr>
-                                        <th>Username</th>
-                                            <th>Email</th>
-                                            <th>Catergory</th>
-                                            <th>Tasks</th>
-                                            <th>Activation</th>
-                                           
-                                        </tr>
-                                    </tfoot>
-                                    
-                                    <tbody>
-                                        <tr>
-                                            <td>Christine</td>
-                                            <td>bai20726@gmail.com</td>
-                                            <td>Accounting</td>
-                                            <td>65</td>
-                                            <td></td>
-                                           
-                                        </tr>
-                                        
+                    <div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-danger">Task List</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            
 
-                                        <tr>
-                                        <td>Christine</td>
-                                            <td>bai20726@gmail.com</td>
-                                            <td>Accounting</td>
-                                            <td>65</td>
-                                            <td></td>
-                                           
-                                        </tr>
-                                       
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Task Title</th>
+                        <th>Task Description</th>
+                        <th>Start Date</th>
+                        <th>Due Date</th>
+                        <th>Assigned To</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <?php
+                // The Query
+                $query = new WP_Query(array('post_type' => 'project'));
+                query_posts($query);
+
+                // The Loop
+                if ($query->have_posts()):
+                    while ($query->have_posts()):
+                        $query->the_post();
+                        // your post content ( title, excerpt, thumb....)
+                
+                        $project_start = get_post_meta(get_the_ID(), 'project_start', true);
+                        $project_end = get_post_meta(get_the_ID(), 'project_end', true);
+                        $project_status = get_post_meta(get_the_ID(), 'project_status_select', true);
+
+                        $project_user_id = get_post_meta(get_the_ID(), 'project_user', true);
+
+                        $project_user = '';
+                        if ($project_user_id) {
+                            $user_info = get_userdata($project_user_id);
+                            if ($user_info) {
+                                $project_user = $user_info->display_name;
+                            }
+                        }
+
+                        ?>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <?php the_title(); ?>
+                                </td>
+                                <td>
+                                    <?php the_content(); ?>
+                                    <p class="truncate"></p>
+                                </td>
+                                <td>
+                                    <?php echo esc_attr($project_start); ?>
+                                </td>
+                                <td>
+                                    <?php echo esc_attr($project_end); ?></b>
+                                </td>
+                                </td>
+                                <td>
+                                    <?php echo esc_attr($project_user); ?>
+                                </td>
+                                <td>
+                                            <span <?php if ($project_status == 'Pending') { echo'class="badge text-bg-danger"'; } ?> <?php if ($project_status == 'In Progress') { echo'class="badge text-bg-primary"'; } ?> <?php if ($project_status == 'Completed') { echo'class="badge text-bg-success"'; } ?> >
+                                                <?php echo esc_attr( $project_status ) ;?>
+                                            </span>                   
+                                        </td>
+                                <td>
+                                    <div class="dropdown">
+                                        <button class="btn btn-secondary dropdown-toggle" type="button"
+                                            id="dropdownMenuButton" data-toggle="dropdown"
+                                            aria-haspopup="true" aria-expanded="false">Action</button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <?php if ($project_status != 'completed'): ?>
+                                                <a class="dropdown-item" href="/admin-edit-task/"?post_id=<?php echo get_the_ID(); ?>">Edit</a>
+                                                
+                                                <a class="dropdown-item" href="<?php echo get_delete_post_link(get_the_ID()); ?>">Delete</a>
+                                            <?php endif; ?>
+                                            <?php if ($project_status == 'completed'): ?>
+                                                <a class="dropdown-item" href="#">Reassign</a>
+<?php endif; ?>
+
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <?php
+                                        endwhile;
+                                        //Reset Query
+                                        wp_reset_query();
+                                    endif;
+                                    ?>
                                     </tbody>
                                 </table>
+
                             </div>
                         </div>
                     </div>
 
+
+
                 </div>
                 <!-- /.container-fluid -->
-</div>
-
             </div>
-            <!-- End of Main Content -->
 
-            
         </div>
-        <!-- End of Content Wrapper -->
+        <!-- End of Main Content -->
+
 
     </div>
+    <!-- End of Content Wrapper -->
+
+    </div>
+
+    <?php
+     get_footer()
+     ?>
+<!-- Bootstrap core JavaScript-->
+<script src="/wp-content/themes/easymanage/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/wp-content/themes/easymanage/assets/vendor/jquery/jquery.min.js"></script>
+
+     <!-- Core plugin JavaScript-->
+     <script src="/wp-content/themes/easymanage/assets/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+     <!-- Custom scripts for all pages-->
+    <script src="/wp-content/themes/easymanage/assets/js/sb-admin-2.min.js"></script>
+
+     

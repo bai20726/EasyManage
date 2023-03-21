@@ -346,3 +346,16 @@ if (isset($_POST['cpt_nonce_field']) && wp_verify_nonce($_POST['cpt_nonce_field'
         <!-- End of Content Wrapper -->
 
     </div>
+    <!-- Bootstrap core JavaScript-->
+<script src="/wp-content/themes/easymanage/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/wp-content/themes/easymanage/assets/vendor/jquery/jquery.min.js"></script>
+
+     <!-- Core plugin JavaScript-->
+     <script src="/wp-content/themes/easymanage/assets/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+     <!-- Custom scripts for all pages-->
+    <script src="/wp-content/themes/easymanage/assets/js/sb-admin-2.min.js"></script>
+
+     <?php
+     get_footer()
+     ?>

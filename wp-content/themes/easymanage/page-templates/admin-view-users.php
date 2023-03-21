@@ -60,7 +60,7 @@ get_header();
 
             <!-- Nav Item  -->
             <li class="nav-item">
-                <a class="nav-link " href="#">
+                <a class="nav-link " href="/admin-view-task/">
                     <i class="fas fa-fw fa-folder"></i>
                     <span>List of Tasks</span>
                 </a>
@@ -193,25 +193,13 @@ get_header();
                         <a href="/admin-view-user/" class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm"><i
                                 class="fas fa-download fa-sm text-white-50"></i> Check Members</a>
                     </div>
-
-
-
-
-
-
-
-
-
                     <div class="main-content" id="panel">
-
-
                         <div class="card mb-4">
-
                             <div class="card-body px-0 pt-0 pb-2">
                                 <div class="table-responsive p-0">
                                     <table class="table align-items-center mb-0">
                                         <thead>
-                                            <tr class="ligth">
+                                            <tr class="light">
                                                 <th>Username</th>
                                                 <th>Nickname</th>
                                                 <th>Email</th>
@@ -221,32 +209,115 @@ get_header();
                                             </tr>
                                         </thead>
                                         <tbody>
-
-                                            <tr>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td> </td>
-                                                <td>
-
-                                                </td>
-                                                <td>
-                                                    <div class="flex align-items-center list-user-action">
-                                                        <form action="" method="post">
-
-                                                        </form>
-
-                                                    </div>
-                                                </td>
-                                            </tr>
-
+                                            <?php
+                                            global $wpdb;
+                                            $users_table = $wpdb->prefix . "users";
+                                            $user_query = "SELECT * FROM $users_table ORDER BY ID DESC";
+                                            $users = $wpdb->get_results($user_query);
+                                            foreach ($users as $user) {
+                                                $user_info = get_userdata($user->ID);
+                                                if ($user_info) {
+                                                    $username = $user_info->user_login;
+                                                    $nickname = $user_info->nickname;
+                                                    $email = $user_info->user_email;
+                                                    $status = get_user_meta($user->ID, 'user_status', true);
+                                                    $join_date = $user_info->user_registered;
+                                                    ?>
+                                                    <tr id="user-<?php echo $user->ID; ?>">
+                                                        <td>
+                                                            <?php echo $username; ?>
+                                                        </td>
+                                                        <td>
+                                                            <?php echo $nickname; ?>
+                                                        </td>
+                                                        <td>
+                                                            <?php echo $email; ?>
+                                                        </td>
+                                                        <td class="user-status" data-user-status="<?php echo $status; ?>">
+                                                            <?php if ($status === 'active' || $status === 1) {
+                                                                echo 'Active';
+                                                            } else if ($status === 'pending' || $status === 2) {
+                                                                echo 'Pending';
+                                                            } else {
+                                                                echo 'Inactive';
+                                                            } ?>
+                                                        </td>
+                                                        <td>
+                                                            <?php echo date('F j, Y', strtotime($join_date)); ?>
+                                                        </td>
+                                                        <td>
+                                                            <div class="flex align-items-center list-user-action">
+                                                                <?php if ($status === 'active' || $status === 1) { ?>
+                                                                    <form action="" method="post">
+                                                                        <input type="hidden" name="user_id"
+                                                                            value="<?php echo $user->ID; ?>">
+                                                                        <input type="hidden" name="action" value="deactivate_user">
+                                                                        <button type="submit"
+                                                                            class="btn btn-sm btn-danger">Deactivate</button>
+                                                                    </form>
+                                                                <?php } else if ($status === 'pending' || $status === 2) { ?>
+                                                                        <form action="" method="post">
+                                                                            <input type="hidden" name="user_id"
+                                                                                value="<?php echo $user->ID; ?>">
+                                                                            <input type="hidden" name="action" value="activate_user">
+                                                                            <button type="submit"
+                                                                                class="btn btn-sm btn-success">Activate</button>
+                                                                        </form>
+                                                                        <form action="" method="post">
+                                                                            <input type="hidden" name="user_id"
+                                                                                value="<?php echo $user->ID; ?>">
+                                                                            <input type="hidden" name="action" value="delete_user">
+                                                                            <button type="submit"
+                                                                                class="btn btn-sm btn-danger">Delete</button>
+                                                                        </form>
+                                                                <?php } else { ?>
+                                                                        <form action="" method="post">
+                                                                            <input type="hidden" name="user_id"
+                                                                                value="<?php echo $user->ID; ?>">
+                                                                            <input type="hidden" name="action" value="activate_user">
+                                                                            <button type="submit"
+                                                                                class="btn btn-sm btn-success">Activate</button>
+                                                                        </form>
+                                                                <?php } ?>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <?php
+                                                }
+                                            }
+                                            ?>
                                         </tbody>
+
                                     </table>
                                 </div>
                             </div>
                         </div>
                     </div>
 
+
+
+
+
+
+
+
+
+
+
+
                 </div>
 
 </body>
+<?php
+get_footer()
+    ?>
+
+<!-- Bootstrap core JavaScript-->
+<script src="/wp-content/themes/easymanage/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/wp-content/themes/easymanage/assets/vendor/jquery/jquery.min.js"></script>
+
+<!-- Core plugin JavaScript-->
+<script src="/wp-content/themes/easymanage/assets/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+<!-- Custom scripts for all pages-->
+<script src="/wp-content/themes/easymanage/assets/js/sb-admin-2.min.js"></script>
