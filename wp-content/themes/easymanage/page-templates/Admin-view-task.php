@@ -95,7 +95,7 @@ $user = new WP_User( $current_user ->ID);
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#">
                     <i class="fas fa-fw fa-folder"></i>
-                    <span>View Users</span>
+                    <span>View Users Location</span>
                 </a>
 
             </li>
@@ -120,7 +120,7 @@ $user = new WP_User( $current_user ->ID);
                     </button>
 
                     <!-- Topbar Search -->
-                    <form
+                    <!-- <form
                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
                             <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
@@ -131,7 +131,7 @@ $user = new WP_User( $current_user ->ID);
                                 </button>
                             </div>
                         </div>
-                    </form>
+                    </form> -->
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -207,6 +207,8 @@ $user = new WP_User( $current_user ->ID);
                                 class="fas fa-download fa-sm text-white-50"></i> Add New Task</a>
                         <a href="/admin-view-user/" class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm"><i
                                 class="fas fa-download fa-sm text-white-50"></i> Check Members</a>
+                                <a href="admin-view-completed" class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm"><i
+                                class="fas fa-download fa-sm text-white-50"></i>Completed Tasks</a>
                     </div>
 
 
@@ -231,10 +233,23 @@ $user = new WP_User( $current_user ->ID);
                     </tr>
                 </thead>
                 <?php
-                // The Query
-                $query = new WP_Query(array('post_type' => 'project'));
-                query_posts($query);
-
+                $query = new WP_Query( array(
+                    'post_type' => 'project',
+                    'meta_query' => array(
+                        'relation' => 'OR',
+                        array(
+                            'key' => 'project_status_select',
+                            'value' => 'In Progress',
+                            'compare' => '='
+                        ),
+                        array(
+                            'key' => 'project_status_select',
+                            'value' => 'Pending',
+                            'compare' => '='
+                        )
+                    )
+                ) );
+                
                 // The Loop
                 if ($query->have_posts()):
                     while ($query->have_posts()):
@@ -257,6 +272,7 @@ $user = new WP_User( $current_user ->ID);
 
                         ?>
                         <tbody>
+                            
                             <tr>
                                 <td>
                                     <?php the_title(); ?>
@@ -287,7 +303,8 @@ $user = new WP_User( $current_user ->ID);
                                             aria-haspopup="true" aria-expanded="false">Action</button>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                             <?php if ($project_status != 'completed'): ?>
-                                                <a class="dropdown-item" href="/admin-edit-task/"?post_id=<?php echo get_the_ID(); ?>">Edit</a>
+                                                <a class="dropdown-item" href="/admin-edit-task/?post_id=<?php echo get_the_ID(); ?>&post_url=<?php echo urlencode(get_permalink()); ?>">Edit</a>
+
                                                 
                                                 <a class="dropdown-item" href="<?php echo get_delete_post_link(get_the_ID()); ?>">Delete</a>
                                             <?php endif; ?>
@@ -330,6 +347,30 @@ $user = new WP_User( $current_user ->ID);
     <?php
      get_footer()
      ?>
+      <a class="scroll-to-top rounded" href="#page-top">
+            <i class="fas fa-angle-up"></i>
+        </a>
+
+        <!-- Logout Modal-->
+        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <a class="btn btn-danger" href="/#/">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 <!-- Bootstrap core JavaScript-->
 <script src="/wp-content/themes/easymanage/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="/wp-content/themes/easymanage/assets/vendor/jquery/jquery.min.js"></script>

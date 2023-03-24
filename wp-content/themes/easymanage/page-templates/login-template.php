@@ -53,4 +53,5 @@ if ( isset( $_POST['login_submit'] ) ) {
     <div class="text-center fs-6">
         <a href="/forgot-password/">Forget password?</a> or <a href="/register/">Sign up</a>
     </div>
+    <a href="/#/" button type="submit" class="btn mt-3" id="btn">LOST? Lets me take you back  </a>
 </div>

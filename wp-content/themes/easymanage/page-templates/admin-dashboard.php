@@ -88,7 +88,7 @@ get_header();
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#">
                     <i class="fas fa-fw fa-folder"></i>
-                    <span>View Users</span>
+                    <span>View Users Location</span>
                 </a>
 
             </li>
@@ -112,7 +112,7 @@ get_header();
                         <i class="fa fa-bars"></i>
                     </button>
 
-                    <!-- Topbar Search -->
+                    <!-- Topbar Search
                     <form
                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
@@ -124,7 +124,7 @@ get_header();
                                 </button>
                             </div>
                         </div>
-                    </form>
+                    </form> -->
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -181,15 +181,15 @@ get_header();
                                     Activity Log
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                <a class="dropdown-item" href="/#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout
                                 </a>
 
-                                
+
                             </div>
 
-                            
+
                         </li>
 
                     </ul>
@@ -315,7 +315,7 @@ get_header();
                             </div>
                         </div>
 
-                        <!-- Pending Requests Card Example -->
+                        <!--Total Users -->
                         <?php
                         $servername = "localhost";
                         $username = "root";
@@ -425,7 +425,7 @@ get_header();
                     <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                        <a class="btn btn-primary" href="login.html">Logout</a>
+                        <a class="btn btn-danger" href="/#/">Logout</a>
                     </div>
                 </div>
             </div>

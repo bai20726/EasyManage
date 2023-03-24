@@ -80,7 +80,7 @@ get_header();
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#">
                     <i class="fas fa-fw fa-folder"></i>
-                    <span>View Users</span>
+                    <span>View Users Location</span>
                 </a>
 
             </li>
@@ -105,7 +105,7 @@ get_header();
                     </button>
 
                     <!-- Topbar Search -->
-                    <form
+                    <!-- <form
                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
                             <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
@@ -116,7 +116,7 @@ get_header();
                                 </button>
                             </div>
                         </div>
-                    </form>
+                    </form> -->
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -185,6 +185,25 @@ get_header();
                 </nav>
                 <!-- End of Topbar -->
 
+                <?php
+                $users = get_users(array('role__in' => array('editor')));
+
+                if (isset($_POST['activate-button']) && isset($_POST['user_id'])) {
+                    $user_id = intval($_POST['user_id']);
+                    update_user_meta($user_id, 'user_status', 'active');
+                    echo '';
+                }
+                ?>
+                <?php
+                $users = get_users(array('role__in' => array('editor')));
+
+                if (isset($_POST['deactivate-button']) && isset($_POST['user_id'])) {
+                    $user_id = intval($_POST['user_id']);
+                    update_user_meta($user_id, 'user_status', 'inactive');
+                    echo '';
+                }
+                ?>
+
                 <div class="container-fluid">
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">List of Tasks</h1>
@@ -214,6 +233,8 @@ get_header();
                                             $users_table = $wpdb->prefix . "users";
                                             $user_query = "SELECT * FROM $users_table ORDER BY ID DESC";
                                             $users = $wpdb->get_results($user_query);
+
+                                            $users = get_users(array('role__in' => array('editor', 'developer')));
                                             foreach ($users as $user) {
                                                 $user_info = get_userdata($user->ID);
                                                 if ($user_info) {
@@ -252,32 +273,17 @@ get_header();
                                                                         <input type="hidden" name="user_id"
                                                                             value="<?php echo $user->ID; ?>">
                                                                         <input type="hidden" name="action" value="deactivate_user">
-                                                                        <button type="submit"
+                                                                        <button type="submit" name="deactivate-button"
                                                                             class="btn btn-sm btn-danger">Deactivate</button>
                                                                     </form>
-                                                                <?php } else if ($status === 'pending' || $status === 2) { ?>
-                                                                        <form action="" method="post">
-                                                                            <input type="hidden" name="user_id"
-                                                                                value="<?php echo $user->ID; ?>">
-                                                                            <input type="hidden" name="action" value="activate_user">
-                                                                            <button type="submit"
-                                                                                class="btn btn-sm btn-success">Activate</button>
-                                                                        </form>
-                                                                        <form action="" method="post">
-                                                                            <input type="hidden" name="user_id"
-                                                                                value="<?php echo $user->ID; ?>">
-                                                                            <input type="hidden" name="action" value="delete_user">
-                                                                            <button type="submit"
-                                                                                class="btn btn-sm btn-danger">Delete</button>
-                                                                        </form>
                                                                 <?php } else { ?>
-                                                                        <form action="" method="post">
-                                                                            <input type="hidden" name="user_id"
-                                                                                value="<?php echo $user->ID; ?>">
-                                                                            <input type="hidden" name="action" value="activate_user">
-                                                                            <button type="submit"
-                                                                                class="btn btn-sm btn-success">Activate</button>
-                                                                        </form>
+                                                                    <form action="" method="post">
+                                                                        <input type="hidden" name="user_id"
+                                                                            value="<?php echo $user->ID; ?>">
+                                                                        <input type="hidden" name="action" value="activate_user">
+                                                                        <button type="submit" name="activate-button"
+                                                                            class="btn btn-sm btn-success">Activate</button>
+                                                                    </form>
                                                                 <?php } ?>
                                                             </div>
                                                         </td>
@@ -311,6 +317,34 @@ get_header();
 <?php
 get_footer()
     ?>
+
+</div>
+<!-- End of Page Wrapper -->
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
+
+<!-- Logout Modal-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <a class="btn btn-danger" href="/#/">Logout</a>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- Bootstrap core JavaScript-->
 <script src="/wp-content/themes/easymanage/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

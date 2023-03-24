@@ -1,12 +1,27 @@
 <?php
 
 /**
- * Template Name: Admin-edit-post
+ * Template Name: Completed-task
  * 
  */
 get_header();
 ?>
+<?php
 
+if (isset($_POST['update-meta'])) {
+    $post_id = $_POST['post-id'];
+    $new_value = $_POST['meta-field'];
+    update_post_meta($post_id, 'meta_key', $new_value);
+}
+
+if (isset($_POST['delete_post'])) {
+    $post_id = $_POST['post-id'];
+    wp_delete_post($post_id);
+}
+$current_user = wp_get_current_user();
+$user = new WP_User($current_user->ID);
+
+?>
 
 
 <head>
@@ -187,110 +202,143 @@ get_header();
 
                 <div class="container-fluid">
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Edit Task</h1>
+                        <h1 class="h3 mb-0 text-gray-800">List of Tasks</h1>
                         <a href="/admin-add-task/" class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm"><i
                                 class="fas fa-download fa-sm text-white-50"></i> Add New Task</a>
                         <a href="/admin-view-user/" class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm"><i
                                 class="fas fa-download fa-sm text-white-50"></i> Check Members</a>
                     </div>
 
-                    <?php
-                    // Get the post ID from the query string
-                    $post_id = isset($_GET['post_id']) ? intval($_GET['post_id']) : 0;
 
-                    // Query the post by ID
-                    $query = new WP_Query(array('post_type' => 'project', 'p' => $post_id));
-
-                    // The Loop
-                    if ($query->have_posts()):
-                        while ($query->have_posts()):
-                            $query->the_post();
-                            // Get the post data
-                            $post_title = get_the_title();
-                            $post_description = get_the_content();
-                            $start_date = get_post_meta(get_the_ID(), 'project_start', true);
-                            $due_date = get_post_meta(get_the_ID(), 'project_end', true);
-                            $developer_id = get_post_meta(get_the_ID(), 'project_user', true);
-                        endwhile;
-                    endif;
-
-                    // Handle form submission
-                    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                        // Update the post data
-                        $post_data = array(
-                            'ID' => $post_id,
-                            'post_title' => $_POST['post_title'],
-                            'post_content' => $_POST['post_description'],
-                        );
-                        wp_update_post($post_data);
-
-                        update_post_meta($post_id, 'project_start', $_POST['start_date']);
-                        update_post_meta($post_id, 'project_end', $_POST['due_date']);
-                        update_post_meta($post_id, 'project_user', $_POST['developer_id']);
-
-                        // Redirect to the updated post
-                        wp_redirect(get_permalink($post_id));
-                        exit;
-                    }
-                    ?>
-
-
-                    <form action="" method="post">
-                        <input type="hidden" name="post_id" value="<?php echo esc_attr($post_id); ?>">
-                        <div class="form-group">
-                            <label for="post-title">Post Title:</label>
-                            <input type="text" class="form-control" id="post-title" name="post_title"
-                                value="<?php echo esc_attr($post_title); ?>">
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-danger">Task List</h6>
                         </div>
-                        <div class="form-group">
-                            <label for="post-description">Post Description:</label>
-                            <textarea class="form-control" id="post-description" name="post_description" rows="5"
-                                required><?php echo esc_html($post_description); ?></textarea>
+                        <div class="card-body">
+                            <div class="table-responsive">
+
+
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Task Title</th>
+                                            <th>Task Description</th>
+                                            <th>Start Date</th>
+                                            <th>Due Date</th>
+                                            <th>Assigned To</th>
+                                            <th>Status</th>
+
+                                        </tr>
+                                    </thead>
+                                    <?php
+                                    $args = array(
+                                        'post_type' => 'project',
+                                        'meta_query' => array(
+                                            array(
+                                                'key' => 'project_status_select',
+                                                'value' => 'Completed',
+                                                'compare' => '=',
+                                            ),
+                                        ),
+                                    );
+                                    $query = new WP_Query($args);
+
+                                    if ($query->have_posts()):
+                                        while ($query->have_posts()):
+                                            $query->the_post();
+
+                                            // your post content (title, excerpt, thumb....)
+                                    
+                                            $project_start = get_post_meta(get_the_ID(), 'project_start', true);
+                                            $project_end = get_post_meta(get_the_ID(), 'project_end', true);
+                                            $project_status = get_post_meta(get_the_ID(), 'project_status_select', true);
+
+                                            $project_user_id = get_post_meta(get_the_ID(), 'project_user', true);
+
+                                            $project_user = '';
+                                            if ($project_user_id) {
+                                                $user_info = get_userdata($project_user_id);
+                                                if ($user_info) {
+                                                    $project_user = $user_info->display_name;
+                                                }
+                                            }
+                                            ?>
+                                            <tbody>
+
+                                                <tr>
+                                                    <td>
+                                                        <?php the_title(); ?>
+                                                    </td>
+                                                    <td>
+                                                        <?php the_content(); ?>
+                                                        <p class="truncate"></p>
+                                                    </td>
+                                                    <td>
+                                                        <?php echo esc_attr($project_start); ?>
+                                                    </td>
+                                                    <td>
+                                                        <?php echo esc_attr($project_end); ?></b>
+                                                    </td>
+                                                    </td>
+                                                    <td>
+                                                        <?php echo esc_attr($project_user); ?>
+                                                    </td>
+                                                    <td>
+                                                        <span <?php if ($project_status == 'Completed') {
+                                                            echo 'class="badge text-bg-success"';
+                                                        } ?>>
+                                                            <?php echo esc_attr($project_status); ?>
+                                                        </span>
+                                                    </td>
+                                                    <td>
+
+                                    </div>
+                                    </td>
+                                    </tr>
+                                    <?php
+                                        endwhile;
+                                        //Reset Query
+                                        wp_reset_query();
+                                    endif;
+                                    ?>
+                            </tbody>
+                            </table>
+
                         </div>
-
-                        <div class="form-group">
-                            <label for="start-date">Start Date:</label>
-                            <input type="date" class="form-control" id="start-date" name="start_date"
-                                value="<?php echo esc_attr($start_date); ?>" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="due-date">Due Date:</label>
-                            <input type="date" class="form-control" id="due-date" name="due_date"
-                                value="<?php echo esc_attr($due_date); ?>" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="developer-select">Developer:</label>
-                            <select class="form-control" id="developer-select" name="developer_id" required>
-                                <option value="">Select Developer</option>
-                                <?php
-                                // Query the developers
-                                $developers_query = new WP_User_Query(array('role' => 'developer'));
-                                $developers = $developers_query->get_results();
-
-                                // Loop through the developers and output the options
-                                foreach ($developers as $developer) {
-                                    $selected = ($developer->ID == $developer_id) ? 'selected' : '';
-                                    echo '<option value="' . esc_attr($developer->ID) . '" ' . $selected . '>' . esc_html($developer->display_name) . '</option>';
-                                }
-                                ?>
-                            </select>
-                        </div>
-                        <!-- <button type="submit" class="btn btn-danger">Save Changes</button> -->
-                        <a href="/admin-view-task/"> <button class="btn btn-danger" type="submit"> Save Changes </button> </a>
-                    </form>
-
-
-
-
-
+                    </div>
                 </div>
-                <!-- /.container-fluid -->
+
+
+
             </div>
-
+            <!-- /.container-fluid -->
         </div>
-        <!-- End of Main Content -->
 
- 
+    </div>
+    <!-- End of Main Content -->
+
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+    </div>
+
+    <?php
+    get_footer()
+        ?>
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
                     </button>
                 </div>
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
