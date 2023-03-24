@@ -67,7 +67,7 @@ get_header();
 
             </li>
 
-            <!-- Nav Item - Utilities Collapse Menu -->
+
             <li class="nav-item">
                 <a class="nav-link collapsed" href="/admin-view-user/">
                     <i class="fas fa-fw fa-folder"></i>
@@ -76,7 +76,7 @@ get_header();
 
             </li>
 
-            <!-- Nav Item - Pages Collapse Menu -->
+
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#">
                     <i class="fas fa-fw fa-folder"></i>
@@ -160,19 +160,7 @@ get_header();
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Profile
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Settings
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Activity Log
-                                </a>
-                                <div class="dropdown-divider"></div>
+
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout
@@ -204,6 +192,21 @@ get_header();
                 }
                 ?>
 
+                <?php
+                if (isset($_POST['allow-user']) && isset($_POST['user_id'])) {
+                    $user_id = intval($_POST['user_id']);
+                    update_user_meta($user_id, 'registration_status', 'active');
+                    echo '';
+                }
+
+                if (isset($_POST['disallow-user']) && isset($_POST['user_id'])) {
+                    $user_id = intval($_POST['user_id']);
+                    update_user_meta($user_id, 'registration_status', 'inactive');
+                    echo '';
+                }
+
+                ?>
+
                 <div class="container-fluid">
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">List of Tasks</h1>
@@ -225,6 +228,7 @@ get_header();
                                                 <th>Status</th>
                                                 <th>Join Date</th>
                                                 <th>Action</th>
+                                                <th>Action-User</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -286,7 +290,29 @@ get_header();
                                                                     </form>
                                                                 <?php } ?>
                                                             </div>
+
                                                         </td>
+                                                        <td>
+
+                                                        <?php if ($status === 'active' || $status === 1) { ?>
+                                                            <form action="" method="post">
+                                                                <input type="hidden" name="user_id"
+                                                                    value="<?php echo $user->ID; ?>">
+                                                                <button type="submit" name="disallow-user"
+                                                                    class="btn btn-sm btn-danger">Disallow</button>
+                                                            </form>
+                                                        <?php } else { ?>
+                                                            <form action="" method="post">
+                                                                <input type="hidden" name="user_id"
+                                                                    value="<?php echo $user->ID; ?>">
+                                                                <button type="submit" name="allow-user"
+                                                                    class="btn btn-sm btn-success">Allow</button>
+                                                            </form>
+                                                        <?php } ?>
+                                                        </td>
+
+
+
                                                     </tr>
                                                     <?php
                                                 }

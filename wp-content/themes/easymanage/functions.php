@@ -104,8 +104,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['register_user'])) {
       // exit;
   }
 }
- // Filter user login to check for inactive registration status
+//  // Filter user login to check for inactive registration status
+// add_filter('wp_authenticate_user', 'check_user_registration_status', 10, 2);
+// function check_user_registration_status($user, $password) {
+//     $user_id = $user->ID;
+//     $registration_status = get_user_meta($user_id, 'registration_status', true);
+    
+//     if ($registration_status === 'inactive') {
+//         // Set error message and prevent login
+//         $error = new WP_Error('authentication_failed', __('Your account is not active. Please contact support for assistance.'));
+//         return $error;
+//     }
+    
+//     // Return the user object if registration status is active
+//     return $user;
+// }
+
 add_filter('wp_authenticate_user', 'check_user_registration_status', 10, 2);
+
 function check_user_registration_status($user, $password) {
     $user_id = $user->ID;
     $registration_status = get_user_meta($user_id, 'registration_status', true);
@@ -118,6 +134,63 @@ function check_user_registration_status($user, $password) {
     
     // Return the user object if registration status is active
     return $user;
+}
+
+// Add custom user meta field for user status
+add_action('user_register', 'add_user_status', 10, 1);
+function add_user_status($user_id) {
+    add_user_meta($user_id, 'user_status', 'inactive');
+}
+
+// Change user status when admin activates user account
+add_action('admin_init', 'activate_user_account');
+function activate_user_account() {
+    if (isset($_GET['action']) && $_GET['action'] == 'activate_user' && isset($_GET['user_id'])) {
+        $user_id = intval($_GET['user_id']);
+        update_user_meta($user_id, 'user_status', 'active');
+    }
+}
+
+// Register user
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['register_user'])) {
+    $username = isset($_POST['username']) ? sanitize_user($_POST['username']) : '';
+    $email = isset($_POST['email']) ? sanitize_user($_POST['email']) : '';
+    $password = isset($_POST['password']) ? $_POST['password'] : '';
+    $confirm_password = isset($_POST['confirm_password']) ? $_POST['confirm_password'] : '';
+
+    if (empty($username) || empty($email) || empty($password) || empty($confirm_password)) {
+        // Handle errors for empty fields
+        die('Please fill in all required fields');
+    }
+
+    if ($password !== $confirm_password) {
+        // Handle password mismatch error
+        die('Passwords do not match');
+    }
+
+    if (email_exists($email)) {
+        die('Email already registered');
+    }
+
+    $user_id = wp_insert_user(array(
+        'user_login' => $username,
+        'user_pass' => $password,
+        'user_email' => $email,
+        'user_registered' => date('Y-m-d H:i:s'),
+        'role' => 'editor'
+    ));
+
+    if (is_wp_error($user_id)) {
+        // Handle insert error
+        die($user_id->get_error_message("unable to register" ));
+    } else {
+        // Set the registration status to "inactive"
+        add_user_meta($user_id, 'registration_status', 'inactive');
+        
+        // Redirect to success page
+        wp_redirect('');
+        exit;
+    }
 }
 
 

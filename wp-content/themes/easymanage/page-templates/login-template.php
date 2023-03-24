@@ -25,7 +25,7 @@ if ( isset( $_POST['login_submit'] ) ) {
         echo 'Invalid login credentials.';
     } else {
         // Redirect the user to a specific page after successful login
-        wp_redirect( '/dashboard/' );
+        wp_redirect( 'dashboard' );
         exit;
     }
 

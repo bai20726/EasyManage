@@ -73,7 +73,7 @@ $user = new WP_User( $current_user ->ID);
 
 
 
-            <!-- Nav Item  -->
+           
             <li class="nav-item">
                 <a class="nav-link " href="/admin-view-task/">
                     <i class="fas fa-fw fa-folder"></i>
@@ -82,7 +82,7 @@ $user = new WP_User( $current_user ->ID);
 
             </li>
 
-            <!-- Nav Item - Utilities Collapse Menu -->
+           
             <li class="nav-item">
                 <a class="nav-link collapsed" href="/admin-view-user/">
                     <i class="fas fa-fw fa-folder"></i>
@@ -91,7 +91,6 @@ $user = new WP_User( $current_user ->ID);
 
             </li>
 
-            <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#">
                     <i class="fas fa-fw fa-folder"></i>
